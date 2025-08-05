@@ -27,15 +27,19 @@ def buscar(arr, inicio, fin):
     medio = (inicio + fin) // 2
 
     if arr[medio] == 0:
+        # Estoy en el indice 0
         if medio == 0:
-            return medio        
+            return medio     
+        # Encontre el primer 0    
         elif arr[medio-1] == 1:
             return medio
         else:
+            # Voy hacia la izquierda quedandome con la mitad del arreglo
             return buscar(arr, inicio, medio)
 
     
     if arr[medio-1] == 1:
+        # Voy hacia la derecha quedandome con la mitad del arreglo
         return buscar(arr, medio+1, fin)
     
          
