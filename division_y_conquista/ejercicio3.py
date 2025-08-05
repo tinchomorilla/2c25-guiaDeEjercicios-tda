@@ -8,8 +8,10 @@ def obtener_parte_entera(n):
     return buscar_raiz(n, 0, n)
 
 def buscar_raiz(n, low, high):
+    # Si low > high quiere decir que el anterior (low-1)
+    # es la parte entera de la raiz
     if low > high:
-        return high  # el mayor número tal que mid^2 <= n
+        return high 
 
     mid = (low + high) // 2
     cuadrado = mid * mid
@@ -17,9 +19,9 @@ def buscar_raiz(n, low, high):
     if cuadrado == n:
         return mid
     elif cuadrado < n:
-        return buscar_raiz(n, mid + 1, high)
+        return buscar_raiz(n, mid + 1, high) # cuadrado < n , por lo que achico el espacio de busqueda
     else:
-        return buscar_raiz(n, low, mid - 1)
+        return buscar_raiz(n, low, mid - 1) # cuadrado > n , por lo que achico el espacio de busqueda
     
 def main():
 
