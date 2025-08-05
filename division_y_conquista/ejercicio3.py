@@ -5,15 +5,19 @@
 
 
 def obtener_parte_entera(n):
-    return obtener(n, 1)
+    mid = n//2
+    return obtener(n, mid)
 
-def obtener(n, x):
+def obtener(n, mid):
+    if mid*mid > n:
+        mid = mid//2
+        return obtener(n,mid)
 
-    if x*x > n:
-        return x-1
+    if mid*mid <= n:
+        if (mid+1)*(mid+1) <= n:
+            mid = obtener(n, mid+1)
+        return mid
     
-    return obtener(n, x+1)
-
 def main():
 
     n = 10
@@ -24,6 +28,9 @@ def main():
 
     n = 57
     print(obtener_parte_entera(n)) # 7
+
+    n = 98
+    print(obtener_parte_entera(n)) # 9
 
 
 if __name__ == "__main__":
