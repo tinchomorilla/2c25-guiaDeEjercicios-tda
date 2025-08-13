@@ -8,8 +8,8 @@
 # ¿El algoritmo implementado encuentra siempre la solución óptima?
 # Justificar si es óptimo, o dar un contraejemplo. ¿Por qué se trata de un algoritmo Greedy? Justificar
 
-# Ejemplo1: arr = [5,1,2,9,4] , 10 pesos.
-# # sorted_arr = [9,5,4,2,1]
+# Ejemplo1: arr = [5,1,2,50,20] , 10 pesos.
+# # sorted_arr = [50,20,5,2,1]
 # En este caso podria ser,
 # una solucion OPTIMA seria un billete de 9 y otro de 1, 9 + 1 = 10.
 # Otra solucion NO optima seria: 5 + 4 + 1 = 10
@@ -19,61 +19,53 @@
 # sorted_arr = [8,5,4,3,1]
 
 
-def minimizar_cambio(arr, n): 
-    return minimizar(arr, n)
+def cambio_greedy(denoms, monto):
 
+    denoms = sorted(denoms, reverse=True)
+    restante = monto
+    resultado = []
 
-def minimizar(arr, n):
-    sist_monetario = sorted(arr, reverse=True)
-    cambio = []
-    sum = 0
+    for billete in denoms:
+        if billete <= 0:   # por robustez
+            continue
+        usar = restante // billete
+        if usar > 0:
+            resultado.extend([billete] * usar)   
+            restante -= usar * billete
+        if restante == 0: 
+            break
 
-    for i, billete_mayor in enumerate(sist_monetario):
-        sum = billete_mayor
-        cambio.append(billete_mayor)
-        for billete_menor in sist_monetario[i + 1 :]:
-            if no_me_pase(sum, billete_menor, n):
-                sum = sum + billete_menor
-                cambio.append(billete_menor)
+    # si no se pudo dar cambio exacto, avisamos 
+    return resultado if restante == 0 else None
 
-            if sum == n:
-                return cambio
-
-        if sum == n:
-            return cambio
-        else:
-            cambio = []
-            sum = 0 
-
-    return cambio
-
-
-def no_me_pase(sum, nuevo, n):
-    return sum + nuevo <= n
 
 
 
 def main():
 
-    arr = [5, 1, 2, 9, 4]
+    arr = [5, 1, 2, 50]
     n = 10
-    print(minimizar_cambio(arr, n))  # [9,1]
+    print(cambio_greedy(arr, n))  # [5,5]
 
-    arr = [5, 1, 2, 44, 4]
+    arr = [5, 1, 2, 20]
     n = 10
-    print(minimizar_cambio(arr, n))  # [5,4,1]
+    print(cambio_greedy(arr, n))  # [5,5]
 
-    arr = [5, 1, 2, 14, 4]
+    arr = [5, 1, 2, 10]
     n = 15
-    print(minimizar_cambio(arr, n))  # [14,1]
+    print(cambio_greedy(arr, n))  # [10,5]
 
-    arr = [5, 1, 2, 11, 4]
+    arr = [5, 1, 2, 50]
     n = 15
-    print(minimizar_cambio(arr, n))  # [11,4]
+    print(cambio_greedy(arr, n))  # [5,5,5]
 
-    arr = [5, 1, 2, 16, 4, 6]
+    arr = [1, 2, 10, 100, 50]
     n = 15
-    print(minimizar_cambio(arr, n))  # [6,5,4]
+    print(cambio_greedy(arr, n))  # [10,2,2,1]
+
+    arr = [5, 1, 2, 100, 10]
+    n = 20
+    print(cambio_greedy(arr, n))  # [10,10]
 
 
 if __name__ == "__main__":
