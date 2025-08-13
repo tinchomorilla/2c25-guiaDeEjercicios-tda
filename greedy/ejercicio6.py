@@ -8,16 +8,6 @@
 # ¿El algoritmo implementado encuentra siempre la solución óptima?
 # Justificar si es óptimo, o dar un contraejemplo. ¿Por qué se trata de un algoritmo Greedy? Justificar
 
-# Ejemplo1: arr = [5,1,2,50,20] , 10 pesos.
-# # sorted_arr = [50,20,5,2,1]
-# En este caso podria ser,
-# una solucion OPTIMA seria un billete de 9 y otro de 1, 9 + 1 = 10.
-# Otra solucion NO optima seria: 5 + 4 + 1 = 10
-# sorted_arr = [9,5,4,2,1]
-
-# Ejemplo2: arr = [5,3,1,8,4], 10 pesos
-# sorted_arr = [8,5,4,3,1]
-
 
 def cambio_greedy(denoms, monto):
 
@@ -26,7 +16,7 @@ def cambio_greedy(denoms, monto):
     resultado = []
 
     for billete in denoms:
-        if billete <= 0:   # por robustez
+        if billete <= 0:  
             continue
         usar = restante // billete
         if usar > 0:
@@ -44,10 +34,6 @@ def cambio_greedy(denoms, monto):
 def main():
 
     arr = [5, 1, 2, 50]
-    n = 10
-    print(cambio_greedy(arr, n))  # [5,5]
-
-    arr = [5, 1, 2, 20]
     n = 10
     print(cambio_greedy(arr, n))  # [5,5]
 
