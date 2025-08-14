@@ -6,7 +6,8 @@
 # Indicar y justificar la complejidad del algoritmo implementado.
 # ¿El algoritmo implementado encuentra siempre la solución óptima? Justificar.
 # ¿Por qué se trata de un algoritmo Greedy? Justificar
-
+# ¿Qué diferencias se perciben si en vez de tener que colocar los elementos completos, 
+# se pueden fraccionar para nuestra conveniencia?
 
 #########################################################################################################
 
