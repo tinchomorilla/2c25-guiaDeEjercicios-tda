@@ -27,15 +27,15 @@ def minimizar(arr,w):
     sum = 0
 
     for i, peso in enumerate(arr):
-        sum = sum + peso
+        sum += peso
         if sum == w:
-            cant_bolsas = cant_bolsas + 1
+            cant_bolsas+=1
             sum = 0
         elif sum > w:
-            cant_bolsas = cant_bolsas + 1
+            cant_bolsas+=1
             sum = peso
         elif i == len(arr) - 1:
-            cant_bolsas = cant_bolsas + 1
+            cant_bolsas+=1
 
     return cant_bolsas
 
