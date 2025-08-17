@@ -19,3 +19,42 @@
 # Indicar y justificar la complejidad del algoritmo implementado. 
 # Justificar por qué el algoritmo planteado es Greedy. 
 # ¿El algoritmo da la solución óptima siempre?
+
+
+######################################################################
+
+LIMITE_INFERIOR = 0
+LIMITE_SUPERIOR = 1
+
+def maximizar_permisos_otorgados(arr):
+    arr = sorted(arr, key=lambda x: x[LIMITE_INFERIOR])
+
+
+    return maximizar(arr)
+
+def maximizar(arr):
+
+    rangos_otorgados = []
+
+    for rango in arr:
+        if len(rangos_otorgados) == 0 or no_se_solapa(rangos_otorgados[-1], rango):
+            rangos_otorgados.append(rango)
+
+    return rangos_otorgados
+
+
+def no_se_solapa(rango_anterior, rango_nuevo):
+    return rango_nuevo[LIMITE_INFERIOR] >= rango_anterior[LIMITE_SUPERIOR]
+
+def main():
+
+    # [ (1,3), (2,5), (3,4), (5,7) , (8,15), (12,14), (14,15)] -> sorted array
+    arr_rangos = [ (3,4), (5,7), (2,5), (8,15), (1,3), (12,14), (14,15)]  
+    
+    print(maximizar_permisos_otorgados(arr_rangos)) # [ (1,3), (3,4), (5,7) , (8,15)] -> 4 permisos
+
+
+
+
+if __name__ == "__main__":
+    main()
