@@ -64,10 +64,8 @@ def main():
     arr = arr = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,0] #12
     print(buscar_primer_cero(arr)) # 6
 
-
     arr = [0, 0, 0, 0, 0] 
     print(buscar_primer_cero(arr)) # 0
-
 
     arr = [0, 0, 0] 
     print(buscar_primer_cero(arr)) # 0
