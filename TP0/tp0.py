@@ -2,28 +2,17 @@ import time
 
 
 def amigos(MAX):
-    cache = {}
-    prints = [(0,0)]  # caso base 
     t1 = time.time()
-    
-    for i in range(2, MAX+1):  # arranco en 2 hasta MAX
-        if i not in cache:
-            cache[i] = suma_de_divisores(i)
-            posible_amigo = cache[i]
-
-            # caso numero perfecto
-            if posible_amigo == i:
-                prints.append((i, i))
-                continue
-
-            # chequeamos simetria
-            if posible_amigo not in cache:
-                cache[posible_amigo] = suma_de_divisores(posible_amigo)
-
-            # condicion de amistad
-            if (posible_amigo in cache and cache[posible_amigo] == i):
+    cache = {i: suma_de_divisores(i) for i in range(2, MAX+1)}
+    prints = [(0,0)]
+    for i in range(2, MAX+1):
+        posible_amigo = cache[i]
+        if posible_amigo == i:
+            prints.append((i, i))
+            continue
+        if cache.get(posible_amigo, 0) == i:
+            if i < posible_amigo:  # evitar duplicados
                 prints.append((i, posible_amigo))
-
     t2 = time.time()
     log_prints(prints, t2 - t1)
 
@@ -49,7 +38,7 @@ def log_prints(prints, elapsed_time):
 
 def main():
 
-    amigos(1000000)
+    amigos(250)
 
 if __name__ == "__main__":
     main()
