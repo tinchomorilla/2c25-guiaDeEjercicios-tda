@@ -8,7 +8,7 @@ times = []
 
 for MAX in ranges:
     print(f"Testing MAX = {MAX}")
-    elapsed = amigos(MAX)
+    elapsed = amigos(MAX) # elapsed = t2 - t1 
     times.append(elapsed)
 
 
