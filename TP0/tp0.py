@@ -4,9 +4,9 @@ import sys
 
 def amigos(MAX):
     t1 = time.time()
-    cache = {i: suma_de_divisores(i) for i in range(2, MAX + 1)}
+    cache = {i: suma_de_divisores(i) for i in range(2, MAX)}
     prints = [(0, 0)]
-    for i in range(2, MAX + 1):
+    for i in range(2, MAX):
         posible_amigo = cache[i]
         if posible_amigo == i:
             prints.append((i, i))
