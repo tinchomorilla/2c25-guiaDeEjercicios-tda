@@ -1,6 +1,6 @@
 import time
 import matplotlib.pyplot as plt
-from sieve import amigos
+from algorithms.sieve import amigos
 
 # Ranges to test
 ranges = [50000, 100000, 150000, 200000, 250000]

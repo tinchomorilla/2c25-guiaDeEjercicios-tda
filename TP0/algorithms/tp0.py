@@ -16,6 +16,7 @@ def amigos(MAX):
                 prints.append((i, posible_amigo))
     t2 = time.time()
     log_prints(prints, t2 - t1)
+    return t2 - t1
 
 
 def suma_de_divisores(n):
